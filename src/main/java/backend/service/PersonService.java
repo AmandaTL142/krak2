@@ -2,6 +2,7 @@ package backend.service;
 
 import backend.dto.PersonRequest;
 import backend.dto.PersonResponse;
+import backend.entity.Address;
 import backend.entity.Person;
 import backend.error.Client4xxException;
 import backend.repository.PersonRepository;
@@ -47,6 +48,17 @@ public class PersonService {
 
         return new PersonResponse(personRepository.save(personUpdated));
     }
+
+    //Skal gøres bedre
+    public PersonResponse updateAddress (Person personToEdit, Address newAddress, int personId){
+        Person personUpdated = personRepository.findById(personId).orElseThrow(()-> new Client4xxException
+                ("No person with provided ID found" + personId));
+        personUpdated.setConnectedAddress(personToEdit.getConnectedAddress());
+
+        return new PersonResponse(personRepository.save(personUpdated));
+    }
+
+
 
     public void deletePerson(String email){
         personRepository.deleteById(email);
