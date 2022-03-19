@@ -20,7 +20,6 @@ public class HobbyResponse {
     public HobbyResponse(Hobby hobby) {
         this.name = hobby.getName();
         this.link = hobby.getLink();
-        this.category = hobby.getCategory();
         this.inOut = hobby.getInOut();
     }
 
